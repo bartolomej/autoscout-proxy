@@ -5,6 +5,7 @@ const port = process.env.PORT || 3000;
 
 const server = http.createServer(async (req, res) => {
   res.setHeader("Content-Type", "application/json");
+  console.log(`${req.method} ${req.url}`);
   try {
     const apiRes = await axios({
       method: 'get',
@@ -16,6 +17,7 @@ const server = http.createServer(async (req, res) => {
     res.statusCode = 200;
     res.end(JSON.stringify(apiRes.data));
   } catch (e) {
+    console.error(e);
     res.statusCode = 500;
     res.end(JSON.stringify({
       status: 'error',
