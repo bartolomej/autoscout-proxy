@@ -1,6 +1,8 @@
 const http = require("http");
 const axios = require('axios')
 
+axios.defaults.headers.common = {};
+
 const port = process.env.PORT || 3000;
 
 const server = http.createServer(async (req, res) => {
