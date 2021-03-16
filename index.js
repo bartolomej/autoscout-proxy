@@ -19,10 +19,11 @@ const server = http.createServer(async (req, res) => {
     res.end(JSON.stringify(apiRes.data));
   } catch (e) {
     console.error(e);
-    res.statusCode = 500;
+    res.statusCode = e.response.status;
     res.end(JSON.stringify({
       status: 'error',
-      message: e.message
+      message: e.response.statusText,
+      description: e.response.data.Message
     }));
   }
 });
